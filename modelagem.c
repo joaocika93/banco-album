@@ -17,7 +17,6 @@ Table selecoes {
   id int [pk, increment]
   nome_selecao varchar
   descricao_selecao varchar
-  titulos_selecao varchar
   emblema_selecao varchar
   tecnico_selecao varchar
 }
@@ -26,8 +25,25 @@ Table jogadores {
   id int [pk, increment]
   nome_jogador varchar
   idade_jogador varchar
-  titulos_selecao varchar
+  titulos_jogador int
   selecao_jogador int
+}
+
+Table titulos {
+  id int [pk, increment]
+  nome_titulo varchar
+}
+
+Table titulos_jogador {
+  id int [pk, increment]
+  jogador int
+  titulo int
+}
+
+Table titulos_selecao {
+  id int [pk, increment]
+  selecao int
+  titulo int
 }
 
 // Creating references
@@ -36,4 +52,7 @@ Table jogadores {
 Ref: jogadores.selecao_jogador > selecoes.id  
 Ref: selecoes.id > album.selecoes_album
 Ref: album.id < usuario.album
-
+Ref: titulos_jogador.titulo <> titulos.id
+Ref: titulos_jogador.jogador <> jogadores.id
+Ref: titulos_selecao.selecao <> selecoes.id
+Ref: titulos_selecao.titulo <> titulos.id
