@@ -1,4 +1,11 @@
 //Tabelas
+Table usuario {
+  id int [pk, increment]
+  usuario varchar
+  senha varchar
+  album id
+}
+
 Table album {
   id int [pk, increment]
   nome_album varchar
@@ -28,4 +35,5 @@ Table jogadores {
 // > many-to-one; < one-to-many; - one-to-one; <> many-to-many
 Ref: jogadores.selecao_jogador > selecoes.id  
 Ref: selecoes.id > album.selecoes_album
+Ref: album.id < usuario.album
 
